@@ -5,7 +5,8 @@ import {ADD_TODO,
     ADD_TODO_ERROR,
     GET_TODO_LOADING,
     GET_TODO_SUCCESS,
-    GET_TODO_ERROR
+    GET_TODO_ERROR,
+    TOGGLE_TODO
 } from "./actionType"
 
 export const addTodo =(data)=>({
@@ -51,7 +52,16 @@ export const getTodoLoading=()=>{
        
     }
 }
-export const removeTodo=(id)=>({
+export const removeTodo=(id)=>{
+   return {
     type:REMOVE_TODO,
-    payload:id,
-})
+    payload:id
+   }
+}
+
+export const toggleTodo=payload=>{
+    return {
+    type:TOGGLE_TODO,
+    payload
+    }
+}

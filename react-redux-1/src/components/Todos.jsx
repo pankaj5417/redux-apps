@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodoError, addTodoLoading, addTodoSuccess, getTodoError, getTodoLoading, getTodoSuccess } from "../features/Todos/actions";
+
+import { addTodoError, addTodoLoading, addTodoSuccess, getTodoError, getTodoLoading, getTodoSuccess, removeTodo } from "../features/Todos/actions";
 import { addTodo } from "../store/action";
 export const Todos =()=>{
     const [text, setText]=useState("")
+    const {todos}=useSelector((state)=>({todos:state.todos}))
+    /*
     const {loading,todos,error}=useSelector((state)=>({
         loading:state.loading,
         todos:state.todos,
@@ -14,10 +17,17 @@ export const Todos =()=>{
         }
         return false
     })
+    */
      const dispatch=useDispatch()
+     /*
      useEffect(()=>{
         getTodos()
+
+        
          },[])
+
+
+        
   
          async function getTodos(){
             try{
@@ -30,6 +40,7 @@ export const Todos =()=>{
              dispatch(getTodoError(e))
             }
         } 
+        */
      const addTodo=()=>{
         dispatch(addTodoLoading())
         fetch("http://localhost:3001/todos", {
@@ -41,7 +52,7 @@ export const Todos =()=>{
         }).then((d)=>d.json()).then((res)=>{
             //success
             dispatch(addTodoSuccess(res))
-            getTodos()
+          //  getTodos()
 
         }).catch(err=>{
             //error
@@ -51,16 +62,30 @@ export const Todos =()=>{
 
 
      }
-    return loading?<div>Loading.....</div> :error?<div>Something went wrong</div> :(
+     function deleteTodo(id){
+        dispatch(removeTodo(id))
+    }
+   
+     
+    return (
         <div>
             <input type="text" value={text} placeholder="Enter Todo" onChange={(e)=>setText(e.target.value)} />
 
             <button onClick={()=>{
-               // dispatch(addTodo(text))
+                dispatch(addTodoSuccess(text))
                //loading
-             addTodo()
+            // addTodo()
             }}>Add Todo</button>
-            { todos.map((e)=>(<div>{e.title}-{e.status ?"Done":"Not done"}</div>))}
+            { todos.map((e)=>(<div>{e.title}-{e.status ?"Done":"Not done"}
+            
+            <button className="delete-btn" onClick={(d)=>{d.preventDefault()
+                deleteTodo(e.id)}}>Delete</button>
+            </div>
+            
+           
+         
+            ))}
+
         </div>
     )
 }

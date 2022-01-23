@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTodoError, addTodoLoading, addTodoSuccess, getTodoError, getTodoLoading, getTodoSuccess,getData } from "../features/Todos/actions";
 import { addTodo } from "../store/action";
 export const Todos =()=>{
-    const [text, setText]=useState("")
+    const [text, setText]=useState({
+        title:"",
+        id:""
+    })
     const {loading,todos,error}=useSelector((state)=>({
         loading:state.todosState.loading,
         todos:state.todosState.todos,
