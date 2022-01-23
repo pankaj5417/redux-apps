@@ -1,10 +1,8 @@
 # React redux todo app
 
-Source code for React redux todo app YouTube tutorial. Includes
 
-- Finished source code
-- Starter code
-- An API
+
+- 
 
 ## Running the finished code
 
@@ -14,15 +12,7 @@ Clone the repo and run the following:
 - npm install
 - npm start
 
-**NOTE:** The API must be running in order for the finished code to work as intended. Seee "Running the API" below
-
-## Running the starter code
-
-The starter code is located in its own folder. To get it:
-
-- cd starter
-- npm install
-- npm start
+*
 
 ## Running the API
 
